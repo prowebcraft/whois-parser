@@ -111,7 +111,7 @@ class Neustar extends Regex
             5 => array(
                     '/name server:(?>[\x20\t]+)(.+)$/im' => 'nameserver'),
             6 => array(
-                    '/dnssec:(?>[\x20\t]+)(.+)$/im' => 'dnssec'));
+                    '/dnssec:(?>[\x20\t]*)(.+)$/im' => 'dnssec'));
 
     /**
      * RegEx to check availability of the domain name
@@ -138,5 +138,4 @@ class Neustar extends Regex
             $ResultSet->dnssec = true;
         }
     }
-
 }
