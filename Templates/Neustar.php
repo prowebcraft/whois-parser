@@ -65,7 +65,7 @@ class Neustar extends Regex
                     '/registry expiry date:(?>[\x20\t]*)(.+)$/im' => 'expires',
                     '/registrar:(?>[\x20\t]*)(.+)$/im' => 'registrar:name', 
                     '/registrar iana id:(?>[\x20\t]*)(.+)$/im' => 'registrar:id',
-                    '/(?>domain )*status:(?>[\x20\t]*)([^\x20\t]+)$/im' => 'status'), 
+                    '/(?>domain )*status:(?>[\x20\t]*)(.+)$/im' => 'status'), 
             2 => array(
                     '/registrant id:(?>[\x20\t]*)(.+)$/im' => 'contacts:owner:handle', 
                     '/registrant name:(?>[\x20\t]*)(.+)$/im' => 'contacts:owner:name', 
