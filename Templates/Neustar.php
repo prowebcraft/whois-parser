@@ -49,7 +49,7 @@ class Neustar extends Regex
             3 => '/registry admin id:(?>[\x20\t]*)(.*?)(?=registry tech id\:)/is', 
             4 => '/registry tech id:(?>[\x20\t]*)(.*?)(?=name server\:)/is',
             5 => '/name server:(?>[\x20\t]*)(.*?)(?=dnssec\:)/is',
-            6 => '/dnssec:(?>[\x20\t]*)(.*?)(?=>>>>)/is');
+            6 => '/dnssec:(?>[\x20\t]*)(.*?)(?=>>>)/is');
 
     /**
 	 * items for each block
