@@ -120,4 +120,23 @@ class Neustar extends Regex
      * @access protected
      */
     protected $available = '/No Data Found/i';
+
+    /**
+     * After parsing ...
+     *
+     * If dnssec key was found we set attribute to true.
+     *
+     * @param  object &$WhoisParser
+     * @return void
+     */
+    public function postProcess(&$WhoisParser)
+    {
+        $ResultSet = $WhoisParser->getResult();
+        if (preg_match("/unsigned/i", $ResultSet->dnssec)) {
+            $ResultSet->dnssec = false;
+        } else {
+            $ResultSet->dnssec = true;
+        }
+    }
+
 }
