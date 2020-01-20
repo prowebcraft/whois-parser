@@ -93,7 +93,7 @@ class Neustar extends Regex
                     '/administrative contact email:(?>[\x20\t]*)(.+)$/im' => 'contacts:admin:email', 
                     '/administrative application purpose:(?>[\x20\t]*)(.+)$/im' => 'contacts:admin:application_purpose', 
                     '/administrative nexus category:(?>[\x20\t]*)(.+)$/im' => 'contacts:admin:nexus_category'),
-            5 => array(
+            4 => array(
                     '/technical contact id:(?>[\x20\t]*)(.+)$/im' => 'contacts:tech:handle', 
                     '/technical contact name:(?>[\x20\t]*)(.+)$/im' => 'contacts:tech:name', 
                     '/technical contact organization:(?>[\x20\t]*)(.+)$/im' => 'contacts:tech:organization', 
@@ -107,7 +107,7 @@ class Neustar extends Regex
                     '/technical contact email:(?>[\x20\t]*)(.+)$/im' => 'contacts:tech:email', 
                     '/technical application purpose:(?>[\x20\t]*)(.+)$/im' => 'contacts:tech:application_purpose', 
                     '/technical nexus category:(?>[\x20\t]*)(.+)$/im' => 'contacts:tech:nexus_category'), 
-            6 => array(
+            5 => array(
                     '/name server:(?>[\x20\t]+)(.+)$/im' => 'nameserver'));
 
     /**
