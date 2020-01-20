@@ -48,7 +48,8 @@ class Neustar extends Regex
             2 => '/registry registrant id:(?>[\x20\t]*)(.*?)(?=registry admin id\:)/is', 
             3 => '/registry admin id:(?>[\x20\t]*)(.*?)(?=registry tech id\:)/is', 
             4 => '/registry tech id:(?>[\x20\t]*)(.*?)(?=name server\:)/is',
-            5 => '/name server:(?>[\x20\t]*)(.*?)(?=>>>>)/is');
+            4 => '/name server:(?>[\x20\t]*)(.*?)(?=dnssec\:)/is',
+            6 => '/dnssec:(?>[\x20\t]*)(.*?)(?=>>>>)/is');
 
     /**
 	 * items for each block
@@ -108,7 +109,9 @@ class Neustar extends Regex
                     '/technical application purpose:(?>[\x20\t]*)(.+)$/im' => 'contacts:tech:application_purpose', 
                     '/technical nexus category:(?>[\x20\t]*)(.+)$/im' => 'contacts:tech:nexus_category'), 
             5 => array(
-                    '/name server:(?>[\x20\t]+)(.+)$/im' => 'nameserver'));
+                    '/name server:(?>[\x20\t]+)(.+)$/im' => 'nameserver'),
+            6 => array(
+                '/dnssec:(?>[\x20\t]+)(.+)$/im' => 'dnssec'));
 
     /**
      * RegEx to check availability of the domain name
