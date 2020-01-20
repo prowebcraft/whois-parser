@@ -119,5 +119,5 @@ class Neustar extends Regex
      * @var string
      * @access protected
      */
-    protected $available = '/Not found:/i';
+    protected $available = '/No Data Found/i';
 }
