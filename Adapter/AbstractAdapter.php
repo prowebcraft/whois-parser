@@ -74,19 +74,21 @@ abstract class AbstractAdapter
      * Returns a adapter object, if not null.
      * Socket or HTTP, default is socket.
      * 
-     * @param  string $type
+     * @param string $type
      * @param string|null $proxyConfig
      * @param string|null $customNamespace
      * @return AbstractAdapter
      */
-    public static function factory($type = 'socket', $proxyConfig = null, $customNamespace = null)
+    public static function factory(string $type = 'socket', string $proxyConfig = null, string $customNamespace = null)
     {
         $obj = null;
         // Ensure the custom namespace ends with a \
-        $customNamespace = rtrim($customNamespace, '\\') .'\\';
+        if ($customNamespace) {
+            $customNamespace = rtrim($customNamespace, '\\') .'\\';
+        }
         if ((strpos($type, '\\') !== false) && class_exists($type)) {
             $obj = new $type($proxyConfig);
-        } elseif ((strlen($customNamespace) > 1) && class_exists($customNamespace . ucfirst($type))) {
+        } elseif ($customNamespace && class_exists($customNamespace . ucfirst($type))) {
             $class = $customNamespace . ucfirst($type);
             $obj = new $class($proxyConfig);
         } elseif (class_exists('Novutec\WhoisParser\Adapter\\'. ucfirst($type))) {

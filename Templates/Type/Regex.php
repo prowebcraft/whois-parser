@@ -2,12 +2,14 @@
 
 namespace Novutec\WhoisParser\Templates\Type;
 
+use Novutec\WhoisParser\Result\Result;
+
 abstract class Regex extends AbstractTemplate {
 
     protected $convertFromHtml = false;
 
     /**
-     * @param \Novutec\WhoisParser\Result\Result $result
+     * @param Result $result
      * @param $rawdata
      */
     public function parse($result, $rawdata)

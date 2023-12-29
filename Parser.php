@@ -38,6 +38,7 @@ use Novutec\WhoisParser\Exception\NoTemplateException;
 use Novutec\WhoisParser\Exception\RateLimitException;
 use Novutec\WhoisParser\Result\Result;
 use Novutec\WhoisParser\Templates\Type\AbstractTemplate;
+use stdClass;
 
 /**
  * WhoisParser
@@ -82,7 +83,7 @@ class Parser
     /**
      * WhoisParserResult object
      * 
-     * @var \Novutec\WhoisParser\Result\Result
+     * @var Result
      * @access protected
      */
     protected $Result;
@@ -261,10 +262,10 @@ class Parser
         // check if given query is an IP address and AS number or possible
         // domain name
         if ($this->bin2ip($this->ip2bin($query)) === $query) {
-            $this->Query = new \stdClass();
+            $this->Query = new stdClass();
             $this->Query->ip = $query;
         } elseif (preg_match('/^AS[0-9]*$/im', $query)) {
-            $this->Query = new \stdClass();
+            $this->Query = new stdClass();
             $this->Query->asn = $query;
         } else {
             $Parser = new \Novutec\DomainParser\Parser();
@@ -272,7 +273,7 @@ class Parser
             if ($this->cachePath !== null) {
                 $Parser->setCachePath($this->cachePath);
             }
-            $this->Query = $Parser->parse(filter_var($query, FILTER_SANITIZE_STRING));
+            $this->Query = $Parser->parse(filter_var($query, FILTER_UNSAFE_RAW));
         }
     }
 
@@ -287,7 +288,7 @@ class Parser
     public function call($query = '')
     {
         if ($query != '') {
-            $this->Query = filter_var($query, FILTER_SANITIZE_STRING);
+            $this->Query = filter_var($query, FILTER_UNSAFE_RAW);
         }
         
         $Config = $this->Config->getCurrent();
@@ -471,7 +472,7 @@ class Parser
      */
     public function setFormat($format = 'object')
     {
-        $this->format = filter_var($format, FILTER_SANITIZE_STRING);
+        $this->format = filter_var($format, FILTER_UNSAFE_RAW);
     }
 
     /**

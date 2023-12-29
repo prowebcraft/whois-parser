@@ -24,6 +24,9 @@
  */
 namespace Novutec\WhoisParser\Result;
 
+use SimpleXMLElement;
+use stdClass;
+
 /**
  * WhoisParser Result
  *
@@ -186,7 +189,7 @@ class Result extends AbstractResult
 	 */
     public function __construct()
     {
-        $this->contacts = new \stdClass();
+        $this->contacts = new stdClass();
         $this->lastId = - 1;
     }
 
@@ -299,7 +302,7 @@ class Result extends AbstractResult
                                 $element->$type = new Registrar();
                                 break;
                             default:
-                                $element->$type = new \stdClass();
+                                $element->$type = new stdClass();
                         }
                     }
 
@@ -331,7 +334,7 @@ class Result extends AbstractResult
 
         // need to set contacts to stdClass otherwise it will not working to
         // add items again
-        $this->contacts = new \stdClass();
+        $this->contacts = new stdClass();
         $this->lastId = - 1;
     }
 
@@ -405,7 +408,7 @@ class Result extends AbstractResult
      */
     public function toXml()
     {
-        $xml = new \SimpleXMLElement(
+        $xml = new SimpleXMLElement(
                 '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><whois></whois>');
 
         $output = get_object_vars($this);
@@ -424,7 +427,7 @@ class Result extends AbstractResult
                 $child = $xml->addChild($name);
 
                 // if it is not a stdClass object we have the toArray() method
-                if (! $var instanceof \stdClass) {
+                if (! $var instanceof stdClass) {
                     $firstArray = $var->toArray();
 
                     foreach ($firstArray as $firstKey => $firstValue) {
@@ -444,7 +447,7 @@ class Result extends AbstractResult
 
                     // lookup all properties of stdClass and convert it
                     foreach ($var as $firstKey => $firstValue) {
-                        if (! $firstValue instanceof \stdClass && ! is_array($firstValue) &&
+                        if (! $firstValue instanceof stdClass && ! is_array($firstValue) &&
                                  ! is_string($firstValue)) {
                             $secondChild = $child->addChild($firstKey);
 

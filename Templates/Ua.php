@@ -24,6 +24,7 @@
  */
 namespace Novutec\WhoisParser\Templates;
 
+use DateTime;
 use Novutec\WhoisParser\Templates\Type\Regex;
 
 /**
@@ -78,10 +79,10 @@ class Ua extends Regex
     public function postProcess(&$WhoisParser)
     {
         $ResultSet = $WhoisParser->getResult();
-        $date = \DateTime::createFromFormat('YmdHis', $ResultSet->expires);
+        $date = DateTime::createFromFormat('YmdHis', $ResultSet->expires);
 
         $ResultSet->expires = '';
-        if ($date instanceof \DateTime) {
+        if ($date instanceof DateTime) {
             $ResultSet->expires = $date->format('Y-m-d H:i:s');
         }
     }

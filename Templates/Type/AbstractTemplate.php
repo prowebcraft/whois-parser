@@ -25,6 +25,7 @@
 namespace Novutec\WhoisParser\Templates\Type;
 
 use Novutec\WhoisParser\Exception\RateLimitException;
+use Novutec\WhoisParser\Result\Result;
 
 /**
  * WhoisParser AbstractTemplate
@@ -105,12 +106,14 @@ abstract class AbstractTemplate
 
         $obj = null;
 
-        // Ensure the custom namespace ends with a \
-        $customNamespace = rtrim($customNamespace, '\\') .'\\';
-        if ((strpos($template, '\\') !== false) && class_exists($template, $customNamespace)) {
+        // Ensure the custom namespace ends with a
+        if ($customNamespace) {
+            $customNamespace = rtrim($customNamespace, '\\') .'\\';
+        }
+        if ($customNamespace && (strpos($template, '\\') !== false) && class_exists($template, $customNamespace)) {
             $class = $template;
             $obj = new $class();
-        } elseif ((strlen($customNamespace) > 1) && class_exists($customNamespace . $template)) {
+        } elseif ($customNamespace && (strlen($customNamespace) > 1) && class_exists($customNamespace . $template)) {
             $class = $customNamespace . $template;
             $obj = new $class();
         } elseif (class_exists('Novutec\WhoisParser\Templates\\'. $template)) {
@@ -129,9 +132,9 @@ abstract class AbstractTemplate
 
 
     /**
-     * @param \Novutec\WhoisParser\Result\Result $result
+     * @param Result $result
      * @param $rawdata
-     * @throws \Novutec\WhoisParser\Exception\RateLimitException
+     * @throws RateLimitException
      */
     public abstract function parse($result, $rawdata);
 

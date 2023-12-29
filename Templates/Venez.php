@@ -2,6 +2,7 @@
 
 namespace Novutec\WhoisParser\Templates;
 
+use DateTime;
 use Novutec\WhoisParser\Templates\Type\Regex;
 
 class Venez extends Regex {
@@ -60,7 +61,7 @@ class Venez extends Regex {
         $originalDateFormat = 'd/m/Y à H:i:s';
         foreach ($dateFields as $field) {
             if (isset($result->$field) && strlen($result->$field)) {
-                $dt = \DateTime::createFromFormat($originalDateFormat, $result->$field);
+                $dt = DateTime::createFromFormat($originalDateFormat, $result->$field);
                 if (is_object($dt)) {
                     $result->$field = $dt->format('Y-m-d H:i:s');
                 }
