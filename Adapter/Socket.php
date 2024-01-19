@@ -238,7 +238,7 @@ class Socket extends AbstractAdapter
      */
     private function getProxyList()
     {
-        if (!strlen($this->proxyConfig)) {
+        if (empty($this->proxyConfig)) {
             return false;
         }
 

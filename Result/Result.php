@@ -27,6 +27,8 @@ namespace Novutec\WhoisParser\Result;
 use SimpleXMLElement;
 use stdClass;
 
+use function PHP81_BC\strftime;
+
 /**
  * WhoisParser Result
  *

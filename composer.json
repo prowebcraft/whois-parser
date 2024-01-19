@@ -11,7 +11,8 @@
   "author": "Novutec",
   "license": "Apache-2.0",
   "require": {
-    "novutec/domainparser": ">=2.0.3"
+    "novutec/domainparser": ">=2.0.3",
+    "php81_bc/strftime": "^0.0.2"
   },
   "autoload": {
     "psr-4": {

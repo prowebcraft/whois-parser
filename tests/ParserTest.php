@@ -14,11 +14,11 @@ class ParserTest extends TestCase
     {
         $parser = new Parser();
         $result = $parser->lookup($domain);
-        $this->assertInstanceOf(\Novutec\DomainParser\Parser::class, $result);
+        $this->assertInstanceOf(\Novutec\WhoisParser\Result\Result::class, $result);
         $this->assertTrue(true, 'true is true');
     }
 
-    public function parseData(): array
+    public static function parseData(): array
     {
         return [
             [ 'google.com', true ]
